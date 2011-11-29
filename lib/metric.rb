@@ -1,13 +1,11 @@
-module HomeMetrics
-  class Metric
+class Metric
 
-    attr_reader :date, :kind, :value
+  attr_reader :date, :kind, :value
 
-    def initialize(date, kind, value)
-      @date = date
-      @kind = kind
-      @value = value
-    end
-
+  def initialize(date, kind, value)
+    @date = date
+    @kind = kind
+    @value = value
   end
+
 end
