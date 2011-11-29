@@ -21,4 +21,21 @@ class TestMetric < Test::Unit::TestCase
 
   end
 
+  def test_id
+    expected = "#{@params[:date].strftime("%Y%m%d")}.#{@params[:kind]}"
+
+    assert_equal expected, @metric.id
+
+  end
+
+  def test_to_hash
+    expected = {
+      'date'  => @params[:date],
+      'kind'  => @params[:kind],
+      'value' => @params[:value]
+    }
+
+    assert_equal expected, @metric.to_hash
+  end
+
 end
