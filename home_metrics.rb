@@ -1,6 +1,19 @@
 require 'sinatra'
 require './lib/metric'
 
-get '/hi' do
-  "Hello World!"
+STORE = {}
+
+get '/' do
+  erb :new
+end
+
+post '/' do
+  @metric = Metric.new(
+    params['metric']['date'],
+    params['metric']['kind'],
+    params['metric']['value']
+  )
+  
+  STORE[@metric.id] = @metric.to_hash
+  
 end

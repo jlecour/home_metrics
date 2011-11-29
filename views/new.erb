@@ -1,0 +1,23 @@
+<form action="/" method="post">
+  <div>
+    <label for="metric_date">Date</label>
+    <input type="metric[date]" name="date" id="metric_date" value="<%= Date.today.strftime("%Y-%m-%d") %>">
+  </div>
+
+  <div>
+    <label for="metric_kind">Mesure :</label>
+    <select name="metric[kind]" id="metric_kind" size="1">
+      <option value="edf_hc">EDF - Heures Creuses</option>
+      <option value="edf_hp">EDF - Heures Pleines</option>
+      <option value="eau">Eau</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="metric_value">Valeur</label>
+    <input type="text" name="metric[value]" id="metric_value" value="">
+  </div>
+
+  <input type="submit" name="" value="Valider">
+
+</form>
