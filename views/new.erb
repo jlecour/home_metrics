@@ -1,7 +1,7 @@
-<form action="/" method="post">
+<form action="/metrics" method="post">
   <div>
     <label for="metric_date">Date</label>
-    <input type="metric[date]" name="date" id="metric_date" value="<%= Date.today.strftime("%Y-%m-%d") %>">
+    <input type="datetime-local" name="metric[datetime]" id="metric_date" value="<%= Time.now.strftime('%Y-%m-%dT%H:%M:%S') %>">
   </div>
 
   <div>
@@ -15,7 +15,7 @@
 
   <div>
     <label for="metric_value">Valeur</label>
-    <input type="text" name="metric[value]" id="metric_value" value="">
+    <input type="number" name="metric[value]" id="metric_value" value="">
   </div>
 
   <input type="submit" name="" value="Valider">
