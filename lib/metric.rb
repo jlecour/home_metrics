@@ -1,22 +1,28 @@
 class Metric
 
-  attr_reader :date, :kind, :value
+  attr_reader :timestamp, :kind, :value
 
-  def initialize(date, kind, value)
-    @date = date
-    @kind = kind
+  def initialize(timestamp, kind, value)
+    @timestamp = if timestamp.is_a?(Fixnum)
+      timestamp
+    elsif timestamp.is_a?(Time)
+      timestamp.to_i
+    else
+      Time.parse(timestamp).to_i
+    end
+    @kind  = kind
     @value = value
   end
 
   def id
-    "#{date.strftime("%Y%m%d")}.#{kind}"
+    "#{timestamp}.#{kind}"
   end
 
   def to_hash
     {
-      "date" => date,
-      "kind" => kind,
-      "value" => value
+      "timestamp" => timestamp,
+      "kind"      => kind,
+      "value"     => value
     }
   end
 

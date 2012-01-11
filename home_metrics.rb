@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'time'
 require './lib/metric'
 
 STORE = {}
@@ -9,7 +10,7 @@ end
 
 post '/' do
   @metric = Metric.new(
-    params['metric']['date'],
+    params['metric']['datetime'],
     params['metric']['kind'],
     params['metric']['value']
   )
