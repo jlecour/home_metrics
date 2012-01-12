@@ -1,6 +1,20 @@
+require 'rubygems'
 require 'sinatra'
+require 'dm-sqlite-adapter'
+require 'dm-migrations'
 require 'time'
 require './lib/metric'
+
+DataMapper.setup(:default, {
+  :adapter  => 'sqlite3',
+  :host     => 'localhost',
+  :username => '',
+  :password => '',
+  :database => 'db/development.sqlite'
+})
+
+DataMapper.finalize
+DataMapper.auto_migrate!
 
 STORE = {}
 
