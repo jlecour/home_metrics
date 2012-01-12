@@ -10,7 +10,7 @@ DataMapper.setup(:default, {
   :host     => 'localhost',
   :username => '',
   :password => '',
-  :database => 'db/development.sqlite'
+  :database => "db/#{Sinatra::Application.environment}.sqlite"
 })
 
 DataMapper.finalize
