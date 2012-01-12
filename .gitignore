@@ -1,3 +1,4 @@
 *.tmproj
 .rvmrc
 .DS_Store
+db/*.sqlite
