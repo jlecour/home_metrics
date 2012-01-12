@@ -16,8 +16,6 @@ DataMapper.setup(:default, {
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
-STORE = {}
-
 get '/' do
   redirect to('/metrics/new')
 end
@@ -27,27 +25,27 @@ get '/metrics/new' do
 end
 
 post '/metrics' do
-  @metric = Metric.new(
+  logger.info "Received #{params.inspect}"
+
+  @metric = Metric.create(
     params['metric']['datetime'],
     params['metric']['kind'],
     params['metric']['value']
   )
-  logger.info "Received #{params.inspect}"
+
+  logger.info "Stored #{@metric.inspect}"
   
-  STORE[@metric.id] = @metric.to_hash
-  logger.info "Stored #{@metric.id}: #{@metric.to_hash}"
-  
-  @metric.to_hash.inspect
+  @metric.inspect
 end
 
 get '/metrics' do
-  STORE.inspect
+  @metrics = Metric.all
 end
 
 get '/metrics/:id' do
-  if params[:id] && STORE.has_key?(params[:id])
-    STORE[params[:id]][:date].inspect
-  else
+  begin
+    @metric = Metric.get!(params[:id])
+  rescue DataMapper::ObjectNotFoundError
     raise Sinatra::NotFound
   end
 end
