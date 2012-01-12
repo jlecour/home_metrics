@@ -1,3 +1,5 @@
+ENV['RACK_ENV'] = 'test'
+
 require_relative '../home_metrics'
 require 'test/unit'
 
